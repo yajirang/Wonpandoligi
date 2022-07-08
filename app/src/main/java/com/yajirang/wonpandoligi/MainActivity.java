@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bluehomestudio.luckywheel.LuckyWheel;
@@ -37,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
     List<WheelItem> wheelItems;
 
     String point;
+    int roullete_count = 2;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +57,12 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
+
+        //룰렛 카운트 텍스트뷰
+        TextView r_count = findViewById(R.id.rouletteCountTv);
+        r_count.setText(String.valueOf(roullete_count));
+
+
 
         //xml 변수 저장
         luckyWheel = findViewById(R.id.luck_wheel);
@@ -74,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //버튼 함수
+        //스타트버튼
         Button start = findViewById(R.id.spin_btn);
         start.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,7 +93,36 @@ public class MainActivity extends AppCompatActivity {
                 luckyWheel.rotateWheelTo(Integer.parseInt(point));
             }
         });
-        //return root;
+
+
+        //마이너스버튼
+        Button minus = findViewById(R.id.minusBtn);
+        minus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(roullete_count < 9 && roullete_count > 2){
+                    roullete_count -= 1;
+                    r_count.setText(String.valueOf(roullete_count));
+                }
+
+            }
+        });
+
+        //플러스버튼
+        Button plus = findViewById(R.id.plusBtn);
+        plus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(roullete_count < 8 && roullete_count > 1){
+                    roullete_count += 1;
+                    r_count.setText(String.valueOf(roullete_count));
+                }
+
+            }
+        });
+
     }
 
     //데이터 저장
