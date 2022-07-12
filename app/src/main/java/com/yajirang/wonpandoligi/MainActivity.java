@@ -40,6 +40,16 @@ public class MainActivity extends AppCompatActivity {
     String point;
     int roullete_count = 2;
 
+    String option_text1;
+    String option_text2;
+    String option_text3;
+    String option_text4;
+    String option_text5;
+    String option_text6;
+    String option_text7;
+    String option_text8;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onReachTarget() {
                 //변수에 아이템 저장
+                //WheelItem wheelitem = wheelItems.get(Integer.parseInt(point) - 1);
                 WheelItem wheelitem = wheelItems.get(Integer.parseInt(point) - 1);
 
                 //변수에 텍스트 저장
@@ -130,6 +141,9 @@ public class MainActivity extends AppCompatActivity {
         wheelItems = new ArrayList<>();
         Drawable d = getResources().getDrawable(R.drawable.ic_money, null);
         Bitmap bitmap = drawableToBitmap(d);
+
+        // TODO: 2022-07-12 wheelitems 반복문 생성 필요, roulettecount 까지 반복문 생성, 텍스트는 배열 또는 구조체로 생성 후 반복문을 통해 삽입, 색상에 맞는 if문 포함 필요
+
 
         wheelItems.add(new WheelItem(Color.parseColor("#F44336"), bitmap, "text1"));
         wheelItems.add(new WheelItem(Color.parseColor("#E91E63"), bitmap, "text2"));
